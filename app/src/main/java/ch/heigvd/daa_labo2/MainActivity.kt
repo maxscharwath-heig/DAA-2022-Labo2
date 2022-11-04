@@ -3,7 +3,6 @@ package ch.heigvd.daa_labo2
 import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.EditText
 import android.widget.ImageButton
 import com.google.android.material.datepicker.CalendarConstraints
@@ -19,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnDatePicker = findViewById(R.id.date_picker_actions)
-        inputDate = findViewById(R.id.input_date)
+        inputDate = findViewById(R.id.main_base_birthdate_edit)
 
 
         val dateFormatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
