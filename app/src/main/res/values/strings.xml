@@ -6,6 +6,8 @@
     <string name="main_base_name_title">Nom</string>
     <string name="main_base_firstname_title">Prénom</string>
     <string name="main_base_birthdate_title">Date de naissance</string>
+    <string name="main_base_birthdate_image">Sélection de la date de naissance</string>
+
     <string name="main_base_birthdate_dialog_title">Sélectionnez votre date de naissance</string>
     <string name="main_base_nationality_title">Nationalité</string>
     <string name="main_base_occupation_title">Occupation</string>
