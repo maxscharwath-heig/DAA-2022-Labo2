@@ -21,31 +21,41 @@ class MainActivity : AppCompatActivity() {
         inputDate = findViewById(R.id.main_base_birthdate_edit)
 
 
-        val dateFormatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         btnDatePicker.setOnClickListener {
-            var currentTimestamp = MaterialDatePicker.todayInUtcMilliseconds()
+            openDatePicker()
+        }
 
-            try {
-                currentTimestamp = dateFormatter.parse(inputDate.text.toString())!!.time
-            } catch (e: Exception) {
-                e.printStackTrace()
-            }
-
-            val datePicker = MaterialDatePicker.Builder.datePicker()
-                .setTitleText("Select date")
-                .setCalendarConstraints(
-                    CalendarConstraints.Builder()
-                        .setOpenAt(currentTimestamp)
-                        .build()
-                )
-                .setSelection(currentTimestamp)
-                .build()
-            datePicker.show(supportFragmentManager, "DATE_PICKER")
-            datePicker.addOnPositiveButtonClickListener {
-                val date = dateFormatter.format(Date(it))
-                inputDate.setText(date)
+        inputDate.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                openDatePicker()
             }
         }
 
+    }
+
+    private fun openDatePicker() {
+        val dateFormatter = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+        var currentTimestamp = MaterialDatePicker.todayInUtcMilliseconds()
+
+        try {
+            currentTimestamp = dateFormatter.parse(inputDate.text.toString())!!.time
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText("Select date")
+            .setCalendarConstraints(
+                CalendarConstraints.Builder()
+                    .setOpenAt(currentTimestamp)
+                    .build()
+            )
+            .setSelection(currentTimestamp)
+            .build()
+        datePicker.show(supportFragmentManager, "DATE_PICKER")
+        datePicker.addOnPositiveButtonClickListener {
+            val date = dateFormatter.format(Date(it))
+            inputDate.setText(date)
+        }
     }
 }
