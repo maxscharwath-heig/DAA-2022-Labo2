@@ -32,8 +32,8 @@ class MainActivity : AppCompatActivity() {
         studentInputsGroup = findViewById(R.id.student_specific_group)
         workerInputsGroup = findViewById(R.id.worker_specific_group)
 
-        // workerInputsGroup.visibility = VISIBLE
-        // studentInputsGroup.visibility = GONE
+        workerInputsGroup.visibility = GONE
+        studentInputsGroup.visibility = GONE
         // TODO: show / hide according to radio
 
         val dateFormatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
