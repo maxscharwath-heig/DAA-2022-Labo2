@@ -1,13 +1,13 @@
 package ch.heigvd.daa_labo2
 
 import android.icu.text.SimpleDateFormat
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View.GONE
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.constraintlayout.widget.Group
 import android.widget.Toast
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import ch.heigvd.daa_labo2.Person.Companion.exampleWorker
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -32,11 +32,25 @@ class MainActivity : AppCompatActivity() {
         studentInputsGroup = findViewById(R.id.student_specific_group)
         workerInputsGroup = findViewById(R.id.worker_specific_group)
 
-        workerInputsGroup.visibility = GONE
-        studentInputsGroup.visibility = GONE
+        val radio = findViewById<RadioGroup>(R.id.main_base_occupation_radio_group)
+
+        radio.setOnCheckedChangeListener { _, checkedId ->
+            when (checkedId) {
+                R.id.main_base_radio_student -> {
+                    studentInputsGroup.visibility = Group.VISIBLE
+                    workerInputsGroup.visibility = Group.GONE
+                }
+                R.id.main_base_radio_employee -> {
+                    studentInputsGroup.visibility = Group.GONE
+                    workerInputsGroup.visibility = Group.VISIBLE
+                }
+            }
+        }
+
+        // workerInputsGroup.visibility = VISIBLE
+        // studentInputsGroup.visibility = GONE
         // TODO: show / hide according to radio
 
-        val dateFormatter = SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
         btnDatePicker.setOnClickListener {
             openDatePicker()
         }
@@ -71,7 +85,4 @@ class MainActivity : AppCompatActivity() {
     private fun save(){
         Toast.makeText(this, exampleWorker.toString(), Toast.LENGTH_LONG).show()
     }
-
-
-
 }
