@@ -11,8 +11,8 @@
         android:id="@+id/main_base_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="visible"
-        app:constraint_referenced_ids="main_base_title, main_base_name_title, main_base_name_edit, main_base_firstname_title, main_base_firstname_edit, main_base_birthdate_title, main_base_birthdate_edit, date_picker_actions, main_base_nationality_title, main_base_nationality_spinner, main_base_occupation_title, main_base_occupation_radio_group" />
+        app:constraint_referenced_ids="main_base_title, main_base_name_title, main_base_name_edit, main_base_firstname_title, main_base_firstname_edit, main_base_birthdate_title, main_base_birthdate_edit, date_picker_actions, main_base_nationality_title, main_base_nationality_spinner, main_base_occupation_title, main_base_occupation_radio_group"
+        tools:visibility="visible" />
 
     <TextView
         android:id="@+id/main_base_title"
@@ -42,9 +42,9 @@
         android:id="@+id/main_base_name_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="@string/main_base_name_title"
         android:inputType="textPersonName"
         android:labelFor="@+id/main_base_name_edit"
-        android:hint="@string/main_base_name_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/main_base_title" />
@@ -63,9 +63,9 @@
         android:id="@+id/main_base_firstname_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:hint="@string/main_base_firstname_title"
         android:inputType="textPersonName"
         android:labelFor="@+id/main_base_name_edit"
-        android:hint="@string/main_base_firstname_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/main_base_name_edit" />
@@ -84,11 +84,11 @@
         android:id="@+id/main_base_birthdate_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:clickable="false"
+        android:cursorVisible="false"
+        android:focusable="false"
         android:hint="@string/main_base_birthdate_title"
         android:inputType="date"
-        android:clickable="false"
-        android:focusable="false"
-        android:cursorVisible="false"
         android:labelFor="@+id/main_base_birthdate_edit"
         app:layout_constraintEnd_toStartOf="@+id/date_picker_actions"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
@@ -156,8 +156,8 @@
         android:id="@+id/main_base_barrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:barrierMargin="20dp"
         app:barrierDirection="end"
+        app:barrierMargin="20dp"
         app:constraint_referenced_ids="
         main_base_name_title,
         main_base_firstname_title,
@@ -319,21 +319,24 @@
         android:id="@+id/worker_experience_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:autofillHints="@string/main_base_name_title"
+        android:autofillHints=""
         android:inputType="number"
         android:labelFor="@+id/main_base_name_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/worker_sector_spinner" />
-
+    <!-- end of worker specific section -->
 
     <!-- Complementary data -->
-
     <androidx.constraintlayout.widget.Group
         android:id="@+id/additional_data_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids=""/>
+        app:constraint_referenced_ids="additional_data_title_worker,
+            additional_email_title,
+            additional_email_edit,
+            additional_remarks_title,
+            additional_remarks_edit" />
 
     <TextView
         android:id="@+id/additional_data_title_worker"
@@ -345,7 +348,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_base_occupation_radio_group"
+        app:layout_constraintTop_toBottomOf="@+id/worker_experience_edit"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -357,7 +360,7 @@
         app:layout_constraintBaseline_toBaselineOf="@id/additional_email_edit"
         app:layout_constraintHorizontal_bias="1"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/specific_data_title_worker" />
+        app:layout_constraintTop_toBottomOf="@+id/additional_data_title_worker" />
 
     <EditText
         android:id="@+id/additional_email_edit"
@@ -365,10 +368,10 @@
         android:layout_height="wrap_content"
         android:autofillHints="@string/main_base_name_title"
         android:inputType="textEmailAddress"
-        android:labelFor="@+id/main_base_name_edit"
+        android:labelFor="@+id/additional_email_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/worker_sector_spinner" />
+        app:layout_constraintTop_toBottomOf="@+id/additional_data_title_worker" />
 
     <TextView
         android:id="@+id/additional_remarks_title"
@@ -376,19 +379,35 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
         android:text="@string/additional_remarks_title"
-        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintBaseline_toTopOf="@id/additional_remarks_edit"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/additional_email_title" />
 
     <EditText
         android:id="@+id/additional_remarks_edit"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="text|textMultiLine"
-        android:labelFor="@+id/main_base_name_edit"
-        app:layout_constraintBaseline_toBaselineOf="@id/additional_remarks_title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/worker_sector_spinner" />
+        android:inputType="textMultiLine"
+        android:labelFor="@+id/additional_remarks_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/additional_email_edit" />
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_cancel"
+        app:layout_constraintTop_toBottomOf="@+id/additional_remarks_edit"
+        />
+
+    <Button
+        android:id="@+id/ok_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/btn_ok"
+        app:layout_constraintStart_toEndOf="@+id/cancel_button"
+        app:layout_constraintTop_toBottomOf="@+id/additional_remarks_edit"
+        />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
