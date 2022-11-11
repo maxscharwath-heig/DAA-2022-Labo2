@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.Toast
+import ch.heigvd.daa_labo2.Person.Companion.exampleWorker
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.*
@@ -20,17 +22,9 @@ class MainActivity : AppCompatActivity() {
         btnDatePicker = findViewById(R.id.date_picker_actions)
         inputDate = findViewById(R.id.main_base_birthdate_edit)
 
-
         btnDatePicker.setOnClickListener {
             openDatePicker()
         }
-
-        inputDate.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                openDatePicker()
-            }
-        }
-
     }
 
     private fun openDatePicker() {
@@ -44,7 +38,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         val datePicker = MaterialDatePicker.Builder.datePicker()
-            .setTitleText("Select date")
+            .setTitleText(R.string.main_base_birthdate_dialog_title)
             .setCalendarConstraints(
                 CalendarConstraints.Builder()
                     .setOpenAt(currentTimestamp)
@@ -58,4 +52,11 @@ class MainActivity : AppCompatActivity() {
             inputDate.setText(date)
         }
     }
+
+    private fun save(){
+        Toast.makeText(this, exampleWorker.toString(), Toast.LENGTH_LONG).show()
+    }
+
+
+
 }
