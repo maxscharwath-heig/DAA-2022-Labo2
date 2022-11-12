@@ -2,29 +2,15 @@ package ch.heigvd.daa_labo2
 
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
 import ch.heigvd.daa_labo2.Person.Companion.exampleWorker
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.*
-
-
-data class FormState(
-    var inputName: EditText,
-    var inputFirstName: EditText,
-    var inputBirthDate: EditText,
-    var inputNationality: Spinner,
-    var inputOccupation: RadioGroup,
-    var inputStudentSchool: EditText,
-    var inputStudentGradYear: EditText,
-    var inputWorkerEnterpriseTitle: EditText,
-    var inputWorkerSector: Spinner,
-    var inputWorkerExperience: EditText,
-    var inputAdditionalEmail: EditText,
-    var inputAdditionalRemarks: EditText,
-)
 
 class MainActivity : AppCompatActivity() {
     private lateinit var btnDatePicker: ImageButton
@@ -69,6 +55,8 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.additional_email_edit),
             findViewById(R.id.additional_remarks_edit),
         )
+
+        formState.hydrate(exampleWorker) // hydrate the form with an example worker
 
         formState.inputOccupation.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
@@ -123,10 +111,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearForm() {
-        // TODO: clear the form using
-        // text.clear()
-        // radiogroup.clearCheck()
-        // spinner.setSelection(0)
+        formState.clearAll();
     }
 
     private fun save() {
