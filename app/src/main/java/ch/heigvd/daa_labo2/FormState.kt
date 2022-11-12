@@ -30,7 +30,7 @@ data class FormState(
         inputName.setText(person.name)
         inputFirstName.setText(person.firstName)
         inputBirthDate.setText(dateFormatter.format(person.birthDay.time))
-        //TODO: Spinner  Nationality
+        setSpinner(inputNationality, person.nationality)
         inputAdditionalEmail.setText(person.email)
         inputAdditionalRemarks.setText(person.remark)
     }
@@ -48,8 +48,19 @@ data class FormState(
 
         hydrate(worker as Person)
         inputWorkerEnterpriseTitle.setText(worker.company)
-        //TODO: Spinner Sector
+        setSpinner(inputWorkerSector, worker.sector)
+
         inputWorkerExperience.setText(worker.experienceYear.toString())
+    }
+
+    private fun setSpinner(spinner: Spinner, value: Any){
+        val adapter = spinner.adapter
+        for (i in 0 until adapter.count) {
+            if (adapter.getItem(i) == value) {
+                spinner.setSelection(i)
+                return
+            }
+        }
     }
 
     private fun exportStudent(): Student {
