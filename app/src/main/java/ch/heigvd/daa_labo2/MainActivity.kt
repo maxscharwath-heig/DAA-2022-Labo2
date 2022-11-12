@@ -2,7 +2,9 @@ package ch.heigvd.daa_labo2
 
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
 import ch.heigvd.daa_labo2.Person.Companion.exampleWorker
@@ -10,10 +12,8 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.*
 
-
 class MainActivity : AppCompatActivity() {
     private lateinit var btnDatePicker: ImageButton
-    private lateinit var inputDate: EditText
 
     private lateinit var baseInputsGroup: Group
     private lateinit var studentInputsGroup: Group
@@ -22,12 +22,13 @@ class MainActivity : AppCompatActivity() {
     private lateinit var cancelBtn: Button
     private lateinit var confirmBtn: Button
 
+    private lateinit var formState: FormState
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         btnDatePicker = findViewById(R.id.date_picker_actions)
-        inputDate = findViewById(R.id.main_base_birthdate_edit)
 
         baseInputsGroup = findViewById(R.id.main_base_group)
         studentInputsGroup = findViewById(R.id.student_specific_group)
@@ -36,9 +37,28 @@ class MainActivity : AppCompatActivity() {
         cancelBtn = findViewById(R.id.cancel_button)
         confirmBtn = findViewById(R.id.ok_button)
 
-        val radio = findViewById<RadioGroup>(R.id.main_base_occupation_radio_group)
+        formState = FormState(
+            //main
+            findViewById(R.id.main_base_name_edit),
+            findViewById(R.id.main_base_firstname_edit),
+            findViewById(R.id.main_base_birthdate_edit),
+            findViewById(R.id.main_base_nationality_spinner),
+            findViewById(R.id.main_base_occupation_radio_group),
+            //student
+            findViewById(R.id.student_school_edit),
+            findViewById(R.id.student_grad_year_edit),
+            //worker
+            findViewById(R.id.worker_enterprise_edit),
+            findViewById(R.id.worker_sector_spinner),
+            findViewById(R.id.worker_experience_edit),
+            //additional
+            findViewById(R.id.additional_email_edit),
+            findViewById(R.id.additional_remarks_edit),
+        )
 
-        radio.setOnCheckedChangeListener { _, checkedId ->
+        formState.hydrate(exampleWorker) // hydrate the form with an example worker
+
+        formState.inputOccupation.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.main_base_radio_student -> {
                     studentInputsGroup.visibility = Group.VISIBLE
@@ -69,7 +89,7 @@ class MainActivity : AppCompatActivity() {
         var currentTimestamp = MaterialDatePicker.todayInUtcMilliseconds()
 
         try {
-            currentTimestamp = dateFormatter.parse(inputDate.text.toString())!!.time
+            currentTimestamp = dateFormatter.parse(formState.inputBirthDate.text.toString())!!.time
         } catch (e: Exception) {
             e.printStackTrace()
         }
@@ -86,15 +106,12 @@ class MainActivity : AppCompatActivity() {
         datePicker.show(supportFragmentManager, "DATE_PICKER")
         datePicker.addOnPositiveButtonClickListener {
             val date = dateFormatter.format(Date(it))
-            inputDate.setText(date)
+            formState.inputBirthDate.setText(date)
         }
     }
 
     private fun clearForm() {
-        // TODO: clear the form using
-        // text.clear()
-        // radiogroup.clearCheck()
-        // spinner.setSelection(0)
+        formState.clearAll();
     }
 
     private fun save() {
