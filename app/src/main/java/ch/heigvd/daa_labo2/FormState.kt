@@ -42,6 +42,51 @@ data class FormState(
         inputWorkerExperience.setText(worker.experienceYear.toString())
     }
 
+    fun exportStudent(): Student {
+        return Student(
+            inputName.text.toString(),
+            inputFirstName.text.toString(),
+            Calendar.getInstance().apply {
+                time = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).parse(inputBirthDate.text.toString())!!
+            },
+            inputNationality.selectedItem.toString(),
+            inputStudentSchool.text.toString(),
+            inputStudentGradYear.text.toString().toInt(),
+            inputAdditionalEmail.text.toString(),
+            inputAdditionalRemarks.text.toString()
+        )
+    }
+
+    fun exportWorker(): Worker {
+        return Worker(
+            inputName.text.toString(),
+            inputFirstName.text.toString(),
+            Calendar.getInstance().apply {
+                time = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).parse(inputBirthDate.text.toString())!!
+            },
+            inputNationality.selectedItem.toString(),
+            inputWorkerEnterpriseTitle.text.toString(),
+            inputWorkerSector.selectedItem.toString(),
+            inputWorkerExperience.text.toString().toInt(),
+            inputAdditionalEmail.text.toString(),
+            inputAdditionalRemarks.text.toString()
+        )
+    }
+
+    fun checkValid(){
+        if (inputName.text.isEmpty()) {
+            inputName.error = "Name is required"
+        }
+
+        if (inputFirstName.text.isEmpty()) {
+            inputFirstName.error = "First name is required"
+        }
+
+        if (inputBirthDate.text.isEmpty()) {
+            inputBirthDate.error = "Birth date is required"
+        }
+    }
+
     fun clearAll(){
         inputName.text.clear()
         inputFirstName.text.clear()
