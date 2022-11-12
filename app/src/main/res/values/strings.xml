@@ -84,4 +84,6 @@
 
     <string name="required_field">%s est requis</string>
 
+    <string name="unknown_field">Ce champs</string>
+
 </resources>
