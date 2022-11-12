@@ -53,7 +53,6 @@ data class FormState(
     }
 
     private fun exportStudent(): Student {
-        // TODO: Check if the form is valid
         return Student(
             inputName.text.toString(),
             inputFirstName.text.toString(),
@@ -69,7 +68,6 @@ data class FormState(
     }
 
     private fun exportWorker(): Worker {
-        //TODO: Check if the form is valid
         return Worker(
             inputName.text.toString(),
             inputFirstName.text.toString(),
@@ -115,13 +113,10 @@ data class FormState(
     }
 
     private fun checkSpinnerField(field: Spinner): Boolean {
-        return true;
-        /**
         if (field.selectedItemPosition == 0){
             return false
         }
         return true
-        **/
     }
 
     private fun isValid(): Boolean {

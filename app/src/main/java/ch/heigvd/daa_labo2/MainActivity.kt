@@ -1,7 +1,6 @@
 package ch.heigvd.daa_labo2
 
 import android.icu.text.DateFormat
-import android.icu.text.SimpleDateFormat
 import android.icu.util.Calendar
 import android.icu.util.TimeZone
 import android.os.Bundle
@@ -13,8 +12,6 @@ import androidx.constraintlayout.widget.Group
 import ch.heigvd.daa_labo2.Person.Companion.exampleStudent
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
@@ -59,6 +56,22 @@ class MainActivity : AppCompatActivity() {
             //additional
             findViewById(R.id.additional_email_edit),
             findViewById(R.id.additional_remarks_edit),
+        )
+
+
+
+        formState.inputNationality.adapter = DefaultValueAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            resources.getString(R.string.nationality_empty),
+            resources.getStringArray(R.array.nationalities)
+        )
+
+        formState.inputWorkerSector.adapter = DefaultValueAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            resources.getString(R.string.sectors_empty),
+            resources.getStringArray(R.array.sectors)
         )
 
         formState.inputOccupation.setOnCheckedChangeListener { _, checkedId ->
