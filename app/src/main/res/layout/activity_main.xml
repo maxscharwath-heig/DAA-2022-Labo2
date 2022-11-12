@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="4dp"
+    android:layout_marginHorizontal="@dimen/container_margin"
     tools:context=".MainActivity">
 
     <androidx.constraintlayout.widget.Barrier
@@ -184,7 +184,6 @@
         android:id="@+id/student_school_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:text="@string/main_specific_school_title"
         app:layout_constraintBaseline_toBaselineOf="@id/student_school_edit"
         app:layout_constraintStart_toStartOf="parent"
@@ -205,7 +204,6 @@
         android:id="@+id/student_drag_year_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:text="@string/main_specific_graduationyear_title"
         app:layout_constraintBaseline_toBaselineOf="@id/student_grad_year_edit"
         app:layout_constraintStart_toStartOf="parent"
@@ -250,7 +248,6 @@
         android:id="@+id/worker_enterprise_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:text="@string/main_specific_compagny_title"
         app:layout_constraintBaseline_toBaselineOf="@id/worker_enterprise_edit"
         app:layout_constraintStart_toStartOf="parent"
@@ -271,7 +268,6 @@
         android:id="@+id/worker_sector_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:text="@string/main_base_nationality_title"
         app:layout_constraintBaseline_toBaselineOf="@id/worker_sector_spinner"
         app:layout_constraintStart_toStartOf="parent"
@@ -291,7 +287,6 @@
         android:id="@+id/worker_experience_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:text="@string/main_specific_experience_title"
         app:layout_constraintBaseline_toBaselineOf="@id/worker_experience_edit"
         app:layout_constraintStart_toStartOf="parent"
@@ -314,7 +309,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:barrierMargin="20dp"
+        app:barrierMargin="@dimen/spacing"
         app:constraint_referenced_ids="worker_experience_title,student_drag_year_title" />
 
     <!-- Complementary data -->
@@ -342,7 +337,6 @@
         android:id="@+id/additional_email_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:text="@string/additional_email_title"
         app:layout_constraintBaseline_toBaselineOf="@id/additional_email_edit"
         app:layout_constraintStart_toStartOf="parent"
@@ -352,20 +346,19 @@
         android:id="@+id/additional_email_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:autofillHints="@string/main_base_name_title"
         android:inputType="textEmailAddress"
         android:labelFor="@+id/additional_email_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
-        app:layout_constraintTop_toBottomOf="@id/additional_data_title" />
+        app:layout_constraintTop_toBottomOf="@id/additional_data_title"
+        android:autofillHints="emailAddress" />
 
     <TextView
         android:id="@+id/additional_remarks_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="4dp"
         android:text="@string/additional_remarks_title"
-        app:layout_constraintBaseline_toTopOf="@id/additional_remarks_edit"
+        android:layout_marginTop="@dimen/spacing"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/additional_email_title" />
 
@@ -375,14 +368,17 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:labelFor="@+id/additional_remarks_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/additional_email_edit" />
+        android:layout_marginTop="@dimen/spacing"
+        app:layout_constraintTop_toBottomOf="@id/additional_email_edit"
+        app:layout_constraintStart_toEndOf="@+id/additional_remarks_title"
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/cancel_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_cancel"
+        app:layout_constraintStart_toEndOf="@id/additional_remarks_edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ok_button"
         app:layout_constraintStart_toStartOf="parent" />
