@@ -13,8 +13,9 @@ class DefaultValueAdapter<T>(
         add(defaultValue)
         addAll(*objects)
     }
+
     override fun isEnabled(position: Int): Boolean {
-        if(position == 0) {
+        if (position == 0) {
             return false
         }
         return super.isEnabled(position)

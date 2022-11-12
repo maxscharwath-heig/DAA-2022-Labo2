@@ -12,12 +12,12 @@ data class FormState(
     val inputName: EditText,
     val inputFirstName: EditText,
     val inputBirthDate: EditText,
-    val inputNationality: Spinner,
+    val spinnerNationality: Spinner,
     val inputOccupation: RadioGroup,
     val inputStudentSchool: EditText,
     val inputStudentGradYear: EditText,
     val inputWorkerEnterpriseTitle: EditText,
-    val inputWorkerSector: Spinner,
+    val spinnerWorkerSector: Spinner,
     val inputWorkerExperience: EditText,
     val inputAdditionalEmail: EditText,
     val inputAdditionalRemarks: EditText,
@@ -59,7 +59,7 @@ data class FormState(
             Calendar.getInstance().apply {
                 time = dateFormatter.parse(inputBirthDate.text.toString())!!
             },
-            inputNationality.selectedItem.toString(),
+            spinnerNationality.selectedItem.toString(),
             inputStudentSchool.text.toString(),
             inputStudentGradYear.text.toString().toInt(),
             inputAdditionalEmail.text.toString(),
@@ -74,9 +74,9 @@ data class FormState(
             Calendar.getInstance().apply {
                 time = dateFormatter.parse(inputBirthDate.text.toString())!!
             },
-            inputNationality.selectedItem.toString(),
+            spinnerNationality.selectedItem.toString(),
             inputWorkerEnterpriseTitle.text.toString(),
-            inputWorkerSector.selectedItem.toString(),
+            spinnerWorkerSector.selectedItem.toString(),
             inputWorkerExperience.text.toString().toInt(),
             inputAdditionalEmail.text.toString(),
             inputAdditionalRemarks.text.toString()
@@ -126,7 +126,7 @@ data class FormState(
         valid = checkRequiredField(inputBirthDate) && valid
         valid = checkRequiredField(inputAdditionalEmail) && valid
         valid = checkRequiredField(inputAdditionalRemarks) && valid
-        valid = checkSpinnerField(inputNationality) && valid
+        valid = checkSpinnerField(spinnerNationality) && valid
 
         when (inputOccupation.checkedRadioButtonId) {
             R.id.main_base_radio_student -> {
@@ -136,7 +136,7 @@ data class FormState(
             R.id.main_base_radio_employee -> {
                 valid = checkRequiredField(inputWorkerEnterpriseTitle) && valid
                 valid = checkRequiredField(inputWorkerExperience) && valid
-                valid = checkSpinnerField(inputWorkerSector) && valid
+                valid = checkSpinnerField(spinnerWorkerSector) && valid
             }
             else -> {
                 valid = false
@@ -149,12 +149,12 @@ data class FormState(
         inputName.text.clear()
         inputFirstName.text.clear()
         inputBirthDate.text.clear()
-        inputNationality.setSelection(0)
+        spinnerNationality.setSelection(0)
         inputOccupation.clearCheck()
         inputStudentSchool.text.clear()
         inputStudentGradYear.text.clear()
         inputWorkerEnterpriseTitle.text.clear()
-        inputWorkerSector.setSelection(0)
+        spinnerWorkerSector.setSelection(0)
         inputWorkerExperience.text.clear()
         inputAdditionalEmail.text.clear()
         inputAdditionalRemarks.text.clear()

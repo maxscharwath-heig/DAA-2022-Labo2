@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
 import ch.heigvd.daa_labo2.Person.Companion.exampleStudent
 import com.google.android.material.datepicker.CalendarConstraints
+import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.*
 
@@ -58,16 +59,14 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.additional_remarks_edit),
         )
 
-
-
-        formState.inputNationality.adapter = DefaultValueAdapter(
+        formState.spinnerNationality.adapter = DefaultValueAdapter(
             this,
             android.R.layout.simple_spinner_dropdown_item,
             resources.getString(R.string.nationality_empty),
             resources.getStringArray(R.array.nationalities)
         )
 
-        formState.inputWorkerSector.adapter = DefaultValueAdapter(
+        formState.spinnerWorkerSector.adapter = DefaultValueAdapter(
             this,
             android.R.layout.simple_spinner_dropdown_item,
             resources.getString(R.string.sectors_empty),
@@ -91,7 +90,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         btnDatePicker.setOnClickListener {
             openDatePicker()
         }
@@ -104,11 +102,11 @@ class MainActivity : AppCompatActivity() {
             save()
         }
 
-
         formState.hydrate(exampleStudent) // hydrate the form with an example worker
     }
 
     private fun openDatePicker() {
+        val utcCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
         val dateFormatter = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault()).apply {
             timeZone = TimeZone.getTimeZone("UTC")
         }
@@ -125,15 +123,20 @@ class MainActivity : AppCompatActivity() {
             .setCalendarConstraints(
                 CalendarConstraints.Builder()
                     .setOpenAt(currentTimestamp)
+                    .setValidator(DateValidatorPointBackward.now())
+                    .setStart(Calendar.getInstance().apply {
+                        set(Calendar.YEAR, utcCalendar.get(Calendar.YEAR) - 110)
+                    }.timeInMillis)
+                    .setEnd(MaterialDatePicker.todayInUtcMilliseconds())
                     .build()
             )
             .setSelection(currentTimestamp)
             .build()
+
         datePicker.show(supportFragmentManager, "DATE_PICKER")
         datePicker.addOnPositiveButtonClickListener {
-            val utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-            utc.timeInMillis = it
-            formState.inputBirthDate.setText(dateFormatter.format(utc.time))
+            utcCalendar.timeInMillis = it
+            formState.inputBirthDate.setText(dateFormatter.format(utcCalendar.time))
         }
     }
 
