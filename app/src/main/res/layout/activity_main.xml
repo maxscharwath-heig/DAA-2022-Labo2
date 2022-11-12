@@ -7,6 +7,7 @@
     android:layout_marginHorizontal="@dimen/container_margin"
     tools:context=".MainActivity">
 
+    <!-- Main -->
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/main_base_barrier"
         android:layout_width="wrap_content"
@@ -24,7 +25,19 @@
         android:id="@+id/main_base_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="main_base_title, main_base_name_title, main_base_name_edit, main_base_firstname_title, main_base_firstname_edit, main_base_birthdate_title, main_base_birthdate_edit, date_picker_actions, main_base_nationality_title, main_base_nationality_spinner, main_base_occupation_title, main_base_occupation_radio_group"
+        app:constraint_referenced_ids="
+        main_base_title,
+        main_base_name_title,
+        main_base_name_edit,
+        main_base_firstname_title,
+        main_base_firstname_edit,
+        main_base_birthdate_title,
+        main_base_birthdate_edit,
+        date_picker_actions,
+        main_base_nationality_title,
+        main_base_nationality_spinner,
+        main_base_occupation_title,
+        main_base_occupation_radio_group"
         tools:visibility="visible" />
 
     <TextView
@@ -50,12 +63,14 @@
         android:id="@+id/main_base_name_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:hint="@string/main_base_name_title"
         android:inputType="textPersonName"
         android:labelFor="@+id/main_base_name_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/main_base_title" />
+        app:layout_constraintTop_toBottomOf="@+id/main_base_title"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/main_base_firstname_title"
@@ -70,12 +85,14 @@
         android:id="@+id/main_base_firstname_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:autofillHints="@string/main_base_firstname_title"
         android:hint="@string/main_base_firstname_title"
         android:inputType="textPersonName"
-        android:labelFor="@+id/main_base_name_edit"
+        android:labelFor="@+id/main_base_firstname_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/main_base_name_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/main_base_name_edit"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/main_base_birthdate_title"
@@ -90,6 +107,7 @@
         android:id="@+id/main_base_birthdate_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:autofillHints="@string/main_base_birthdate_title"
         android:clickable="false"
         android:cursorVisible="false"
         android:focusable="false"
@@ -98,7 +116,8 @@
         android:labelFor="@+id/main_base_birthdate_edit"
         app:layout_constraintEnd_toStartOf="@+id/date_picker_actions"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/main_base_firstname_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/main_base_firstname_edit"
+        tools:ignore="LabelFor" />
 
     <ImageButton
         android:id="@+id/date_picker_actions"
@@ -156,6 +175,7 @@
             android:layout_height="wrap_content"
             android:text="@string/main_base_occupation_worker" />
     </RadioGroup>
+    <!-- End Main -->
 
     <!-- Student specific -->
     <androidx.constraintlayout.widget.Group
@@ -198,7 +218,8 @@
         android:labelFor="@+id/main_base_name_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/specific_data_title_student" />
+        app:layout_constraintTop_toBottomOf="@+id/specific_data_title_student"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/student_drag_year_title"
@@ -218,7 +239,9 @@
         android:labelFor="@+id/main_base_name_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/student_school_edit" />
+        app:layout_constraintTop_toBottomOf="@+id/student_school_edit"
+        tools:ignore="LabelFor" />
+    <!-- End Student specific -->
 
     <!-- Worker specific -->
     <androidx.constraintlayout.widget.Group
@@ -262,7 +285,8 @@
         android:labelFor="@+id/main_base_name_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/specific_data_title_worker" />
+        app:layout_constraintTop_toBottomOf="@+id/specific_data_title_worker"
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/worker_sector_title"
@@ -301,8 +325,9 @@
         android:labelFor="@+id/main_base_name_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
-        app:layout_constraintTop_toBottomOf="@+id/worker_sector_spinner" />
-    <!-- end of worker specific section -->
+        app:layout_constraintTop_toBottomOf="@+id/worker_sector_spinner"
+        tools:ignore="LabelFor" />
+    <!-- End Worker specific -->
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/dynamic_barrier"
@@ -310,7 +335,9 @@
         android:layout_height="wrap_content"
         app:barrierDirection="bottom"
         app:barrierMargin="@dimen/spacing"
-        app:constraint_referenced_ids="worker_experience_title,student_drag_year_title" />
+        app:constraint_referenced_ids="
+        worker_experience_title,
+        student_drag_year_title" />
 
     <!-- Complementary data -->
     <androidx.constraintlayout.widget.Group
@@ -346,19 +373,20 @@
         android:id="@+id/additional_email_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:autofillHints="emailAddress"
         android:inputType="textEmailAddress"
         android:labelFor="@+id/additional_email_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@id/additional_data_title"
-        android:autofillHints="emailAddress" />
+        tools:ignore="LabelFor" />
 
     <TextView
         android:id="@+id/additional_remarks_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/additional_remarks_title"
         android:layout_marginTop="@dimen/spacing"
+        android:text="@string/additional_remarks_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/additional_email_title" />
 
@@ -366,21 +394,23 @@
         android:id="@+id/additional_remarks_edit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/spacing"
+        android:autofillHints="@string/additional_remarks_title"
         android:inputType="textMultiLine"
         android:labelFor="@+id/additional_remarks_title"
-        android:layout_marginTop="@dimen/spacing"
-        app:layout_constraintTop_toBottomOf="@id/additional_email_edit"
         app:layout_constraintStart_toEndOf="@+id/additional_remarks_title"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@id/additional_email_edit"
+        tools:ignore="LabelFor" />
+    <!-- End Complementary data -->
 
     <Button
         android:id="@+id/cancel_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/btn_cancel"
-        app:layout_constraintStart_toEndOf="@id/additional_remarks_edit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@id/ok_button"
+        app:layout_constraintStart_toEndOf="@id/additional_remarks_edit"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
