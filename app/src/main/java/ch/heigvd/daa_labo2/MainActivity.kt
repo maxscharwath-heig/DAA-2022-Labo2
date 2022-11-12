@@ -2,23 +2,25 @@ package ch.heigvd.daa_labo2
 
 import android.icu.text.SimpleDateFormat
 import android.os.Bundle
-import android.widget.EditText
-import android.widget.ImageButton
-import androidx.constraintlayout.widget.Group
-import android.widget.Toast
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.constraintlayout.widget.Group
 import ch.heigvd.daa_labo2.Person.Companion.exampleWorker
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.*
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var btnDatePicker: ImageButton
     private lateinit var inputDate: EditText
 
+    private lateinit var baseInputsGroup: Group
     private lateinit var studentInputsGroup: Group
     private lateinit var workerInputsGroup: Group
+
+    private lateinit var cancelBtn: Button
+    private lateinit var confirmBtn: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,10 +29,12 @@ class MainActivity : AppCompatActivity() {
         btnDatePicker = findViewById(R.id.date_picker_actions)
         inputDate = findViewById(R.id.main_base_birthdate_edit)
 
-
-        // Hide one section just for testing
+        baseInputsGroup = findViewById(R.id.main_base_group)
         studentInputsGroup = findViewById(R.id.student_specific_group)
         workerInputsGroup = findViewById(R.id.worker_specific_group)
+
+        cancelBtn = findViewById(R.id.cancel_button)
+        confirmBtn = findViewById(R.id.ok_button)
 
         val radio = findViewById<RadioGroup>(R.id.main_base_occupation_radio_group)
 
@@ -47,12 +51,16 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // workerInputsGroup.visibility = VISIBLE
-        // studentInputsGroup.visibility = GONE
-        // TODO: show / hide according to radio
-
         btnDatePicker.setOnClickListener {
             openDatePicker()
+        }
+
+        cancelBtn.setOnClickListener {
+            clearForm()
+        }
+
+        confirmBtn.setOnClickListener {
+            save()
         }
     }
 
@@ -82,7 +90,14 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun save(){
+    private fun clearForm() {
+        // TODO: clear the form using
+        // text.clear()
+        // radiogroup.clearCheck()
+        // spinner.setSelection(0)
+    }
+
+    private fun save() {
         Toast.makeText(this, exampleWorker.toString(), Toast.LENGTH_LONG).show()
     }
 }
