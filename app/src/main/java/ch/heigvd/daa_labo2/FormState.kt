@@ -114,10 +114,15 @@ data class FormState(
     private fun checkRequiredField(field: EditText): Boolean {
         field.error = null
         if (field.text.isEmpty()){
-            field.error = Resources.getSystem().getString(
-                R.string.required_field, field.hint ?:
-                Resources.getSystem().getString(R.string.unknown_field)
-            )
+            try {
+                field.error = Resources.getSystem().getString(
+                    R.string.required_field, field.hint ?:
+                    Resources.getSystem().getString(R.string.unknown_field)
+                )
+            } catch (e: Exception){
+                // FIX some time resources are not loaded ... IDK why :'(
+                field.error = "Required field"
+            }
             return false
         }
         return true
