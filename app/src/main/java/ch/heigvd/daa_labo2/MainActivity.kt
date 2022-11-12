@@ -13,7 +13,6 @@ import ch.heigvd.daa_labo2.Person.Companion.exampleStudent
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
-import java.util.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var btnDatePicker: ImageButton
@@ -107,7 +106,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun openDatePicker() {
         val utcCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-        val dateFormatter = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault()).apply {
+        val dateFormatter = DateFormat.getDateInstance(DateFormat.LONG, resources.configuration.locales.get(0)).apply {
             timeZone = TimeZone.getTimeZone("UTC")
         }
         var currentTimestamp = MaterialDatePicker.todayInUtcMilliseconds()
