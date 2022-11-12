@@ -56,8 +56,6 @@ class MainActivity : AppCompatActivity() {
             findViewById(R.id.additional_remarks_edit),
         )
 
-        formState.hydrate(exampleWorker) // hydrate the form with an example worker
-
         formState.inputOccupation.setOnCheckedChangeListener { _, checkedId ->
             when (checkedId) {
                 R.id.main_base_radio_student -> {
@@ -71,6 +69,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
         btnDatePicker.setOnClickListener {
             openDatePicker()
         }
@@ -82,6 +81,9 @@ class MainActivity : AppCompatActivity() {
         confirmBtn.setOnClickListener {
             save()
         }
+
+
+        formState.hydrate(exampleWorker) // hydrate the form with an example worker
     }
 
     private fun openDatePicker() {
@@ -111,10 +113,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun clearForm() {
-        formState.clearAll();
+        formState.clearAll()
     }
 
     private fun save() {
-        Toast.makeText(this, exampleWorker.toString(), Toast.LENGTH_LONG).show()
+
+        Toast.makeText(this, formState.export().toString(), Toast.LENGTH_LONG).show()
     }
 }

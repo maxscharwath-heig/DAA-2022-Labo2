@@ -23,26 +23,31 @@ data class FormState(
     private fun hydrate(person: Person){
         inputName.setText(person.name)
         inputFirstName.setText(person.firstName)
-        inputBirthDate.setText(SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(person.birthDay))
+        inputBirthDate.setText(SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(person.birthDay.time))
         //TODO: Spinner  Nationality
         inputAdditionalEmail.setText(person.email)
         inputAdditionalRemarks.setText(person.remark)
     }
 
     fun hydrate(student: Student){
+        inputOccupation.check(R.id.main_base_radio_student)
+
         hydrate(student as Person)
         inputStudentSchool.setText(student.university)
         inputStudentGradYear.setText(student.graduationYear.toString())
     }
 
     fun hydrate(worker: Worker) {
+        inputOccupation.check(R.id.main_base_radio_employee)
+
         hydrate(worker as Person)
         inputWorkerEnterpriseTitle.setText(worker.company)
         //TODO: Spinner Sector
         inputWorkerExperience.setText(worker.experienceYear.toString())
     }
 
-    fun exportStudent(): Student {
+    private fun exportStudent(): Student {
+        // TODO: Check if the form is valid
         return Student(
             inputName.text.toString(),
             inputFirstName.text.toString(),
@@ -57,7 +62,8 @@ data class FormState(
         )
     }
 
-    fun exportWorker(): Worker {
+    private fun exportWorker(): Worker {
+        //TODO: Check if the form is valid
         return Worker(
             inputName.text.toString(),
             inputFirstName.text.toString(),
@@ -73,17 +79,11 @@ data class FormState(
         )
     }
 
-    fun checkValid(){
-        if (inputName.text.isEmpty()) {
-            inputName.error = "Name is required"
-        }
-
-        if (inputFirstName.text.isEmpty()) {
-            inputFirstName.error = "First name is required"
-        }
-
-        if (inputBirthDate.text.isEmpty()) {
-            inputBirthDate.error = "Birth date is required"
+    fun export(): Person {
+        return when(inputOccupation.checkedRadioButtonId){
+            R.id.main_base_radio_student -> exportStudent()
+            R.id.main_base_radio_employee -> exportWorker()
+            else -> throw Exception("No occupation selected")
         }
     }
 
