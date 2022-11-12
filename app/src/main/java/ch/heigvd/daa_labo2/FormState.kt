@@ -30,7 +30,7 @@ data class FormState(
         inputName.setText(person.name)
         inputFirstName.setText(person.firstName)
         inputBirthDate.setText(dateFormatter.format(person.birthDay.time))
-        setSpinner(inputNationality, person.nationality)
+        setSpinner(spinnerNationality, person.nationality)
         inputAdditionalEmail.setText(person.email)
         inputAdditionalRemarks.setText(person.remark)
     }
@@ -48,7 +48,7 @@ data class FormState(
 
         hydrate(worker as Person)
         inputWorkerEnterpriseTitle.setText(worker.company)
-        setSpinner(inputWorkerSector, worker.sector)
+        setSpinner(spinnerWorkerSector, worker.sector)
 
         inputWorkerExperience.setText(worker.experienceYear.toString())
     }
