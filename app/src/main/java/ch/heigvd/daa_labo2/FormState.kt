@@ -1,7 +1,8 @@
 package ch.heigvd.daa_labo2
 
 import android.content.res.Resources
-import android.icu.text.SimpleDateFormat
+import android.icu.text.DateFormat
+import android.icu.util.TimeZone
 import android.widget.EditText
 import android.widget.RadioGroup
 import android.widget.Spinner
@@ -21,10 +22,14 @@ data class FormState(
     val inputAdditionalEmail: EditText,
     val inputAdditionalRemarks: EditText,
 ){
+    private val dateFormatter = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault()).apply {
+        timeZone = TimeZone.getTimeZone("UTC")
+    }
+
     private fun hydrate(person: Person){
         inputName.setText(person.name)
         inputFirstName.setText(person.firstName)
-        inputBirthDate.setText(SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).format(person.birthDay.time))
+        inputBirthDate.setText(dateFormatter.format(person.birthDay.time))
         //TODO: Spinner  Nationality
         inputAdditionalEmail.setText(person.email)
         inputAdditionalRemarks.setText(person.remark)
@@ -53,7 +58,7 @@ data class FormState(
             inputName.text.toString(),
             inputFirstName.text.toString(),
             Calendar.getInstance().apply {
-                time = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).parse(inputBirthDate.text.toString())!!
+                time = dateFormatter.parse(inputBirthDate.text.toString())!!
             },
             inputNationality.selectedItem.toString(),
             inputStudentSchool.text.toString(),
@@ -69,7 +74,7 @@ data class FormState(
             inputName.text.toString(),
             inputFirstName.text.toString(),
             Calendar.getInstance().apply {
-                time = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).parse(inputBirthDate.text.toString())!!
+                time = dateFormatter.parse(inputBirthDate.text.toString())!!
             },
             inputNationality.selectedItem.toString(),
             inputWorkerEnterpriseTitle.text.toString(),

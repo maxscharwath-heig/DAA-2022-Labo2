@@ -1,6 +1,9 @@
 package ch.heigvd.daa_labo2
 
+import android.icu.text.DateFormat
 import android.icu.text.SimpleDateFormat
+import android.icu.util.Calendar
+import android.icu.util.TimeZone
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
@@ -10,9 +13,9 @@ import androidx.constraintlayout.widget.Group
 import ch.heigvd.daa_labo2.Person.Companion.exampleStudent
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
+import java.time.format.DateTimeFormatter
+import java.time.format.FormatStyle
 import java.util.*
-import android.icu.util.Calendar
-import android.icu.util.TimeZone
 
 class MainActivity : AppCompatActivity() {
     private lateinit var btnDatePicker: ImageButton
@@ -93,7 +96,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openDatePicker() {
-        val dateFormatter = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).apply {
+        val dateFormatter = DateFormat.getDateInstance(DateFormat.LONG, Locale.getDefault()).apply {
             timeZone = TimeZone.getTimeZone("UTC")
         }
         var currentTimestamp = MaterialDatePicker.todayInUtcMilliseconds()
