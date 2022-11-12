@@ -8,10 +8,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
 import ch.heigvd.daa_labo2.Person.Companion.exampleStudent
-import ch.heigvd.daa_labo2.Person.Companion.exampleWorker
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
 import java.util.*
+import android.icu.util.Calendar
+import android.icu.util.TimeZone
 
 class MainActivity : AppCompatActivity() {
     private lateinit var btnDatePicker: ImageButton
@@ -92,7 +93,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openDatePicker() {
-        val dateFormatter = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault())
+        val dateFormatter = SimpleDateFormat("dd MMMM yyyy", Locale.getDefault()).apply {
+            timeZone = TimeZone.getTimeZone("UTC")
+        }
         var currentTimestamp = MaterialDatePicker.todayInUtcMilliseconds()
 
         try {
@@ -112,8 +115,9 @@ class MainActivity : AppCompatActivity() {
             .build()
         datePicker.show(supportFragmentManager, "DATE_PICKER")
         datePicker.addOnPositiveButtonClickListener {
-            val date = dateFormatter.format(Date(it))
-            formState.inputBirthDate.setText(date)
+            val utc = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
+            utc.timeInMillis = it
+            formState.inputBirthDate.setText(dateFormatter.format(utc.time))
         }
     }
 
