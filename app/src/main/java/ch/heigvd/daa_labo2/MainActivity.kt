@@ -7,6 +7,7 @@ import android.widget.ImageButton
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.Group
+import ch.heigvd.daa_labo2.Person.Companion.exampleStudent
 import ch.heigvd.daa_labo2.Person.Companion.exampleWorker
 import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -83,7 +84,7 @@ class MainActivity : AppCompatActivity() {
         }
 
 
-        formState.hydrate(exampleWorker) // hydrate the form with an example worker
+        formState.hydrate(exampleStudent) // hydrate the form with an example worker
     }
 
     private fun openDatePicker() {
@@ -117,7 +118,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun save() {
-
-        Toast.makeText(this, formState.export().toString(), Toast.LENGTH_LONG).show()
+        try {
+            Toast.makeText(this, formState.export().toString(), Toast.LENGTH_LONG).show()
+        } catch (e: Exception) {
+            Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
+        }
     }
 }

@@ -82,4 +82,6 @@
     <string name="btn_cancel">@android:string/cancel</string>
     <string name="btn_ok">@android:string/ok</string>
 
+    <string name="required_field">%s est requis</string>
+
 </resources>

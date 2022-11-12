@@ -1,5 +1,6 @@
 package ch.heigvd.daa_labo2
 
+import android.content.res.Resources
 import android.icu.text.SimpleDateFormat
 import android.widget.EditText
 import android.widget.RadioGroup
@@ -79,12 +80,61 @@ data class FormState(
         )
     }
 
+    @Throws(Exception::class)
     fun export(): Person {
+        if (!isValid()){
+            throw Exception("Form is not valid")
+        }
         return when(inputOccupation.checkedRadioButtonId){
             R.id.main_base_radio_student -> exportStudent()
             R.id.main_base_radio_employee -> exportWorker()
             else -> throw Exception("No occupation selected")
         }
+    }
+
+    private fun checkRequiredField(field: EditText): Boolean {
+        field.error = null
+        if (field.text.isEmpty()){
+            field.error = Resources.getSystem().getString(R.string.required_field, field.hint)
+            return false
+        }
+        return true
+    }
+
+    private fun checkSpinnerField(field: Spinner): Boolean {
+        return true;
+        /**
+        if (field.selectedItemPosition == 0){
+            return false
+        }
+        return true
+        **/
+    }
+
+    private fun isValid(): Boolean {
+        var valid = true
+        valid = checkRequiredField(inputName) && valid
+        valid = checkRequiredField(inputFirstName) && valid
+        valid = checkRequiredField(inputBirthDate) && valid
+        valid = checkRequiredField(inputAdditionalEmail) && valid
+        valid = checkRequiredField(inputAdditionalRemarks) && valid
+        valid = checkSpinnerField(inputNationality) && valid
+
+        when (inputOccupation.checkedRadioButtonId) {
+            R.id.main_base_radio_student -> {
+                valid = checkRequiredField(inputStudentSchool) && valid
+                valid = checkRequiredField(inputStudentGradYear) && valid
+            }
+            R.id.main_base_radio_employee -> {
+                valid = checkRequiredField(inputWorkerEnterpriseTitle) && valid
+                valid = checkRequiredField(inputWorkerExperience) && valid
+                valid = checkSpinnerField(inputWorkerSector) && valid
+            }
+            else -> {
+                valid = false
+            }
+        }
+        return valid
     }
 
     fun clearAll(){
