@@ -268,7 +268,7 @@
         android:id="@+id/worker_sector_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/main_base_nationality_title"
+        android:text="@string/main_specific_sector_title"
         app:layout_constraintBaseline_toBaselineOf="@id/worker_sector_spinner"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/specific_data_title_worker" />
