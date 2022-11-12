@@ -92,10 +92,18 @@ data class FormState(
         }
     }
 
+    /**
+     * Check if the field is valid
+     * Set the error message if not valid using hint text as field name
+     * @return true if the field is valid
+     */
     private fun checkRequiredField(field: EditText): Boolean {
         field.error = null
         if (field.text.isEmpty()){
-            field.error = Resources.getSystem().getString(R.string.required_field, field.hint)
+            field.error = Resources.getSystem().getString(
+                R.string.required_field, field.hint ?:
+                Resources.getSystem().getString(R.string.unknown_field)
+            )
             return false
         }
         return true
