@@ -67,6 +67,10 @@ class MainActivity : AppCompatActivity() {
                     studentInputsGroup.visibility = Group.GONE
                     workerInputsGroup.visibility = Group.VISIBLE
                 }
+                else -> {
+                    studentInputsGroup.visibility = Group.GONE
+                    workerInputsGroup.visibility = Group.GONE
+                }
             }
         }
 
