@@ -141,7 +141,6 @@ data class FormState(
         valid = checkRequiredField(inputFirstName) && valid
         valid = checkRequiredField(inputBirthDate) && valid
         valid = checkRequiredField(inputAdditionalEmail) && valid
-        valid = checkRequiredField(inputAdditionalRemarks) && valid
         valid = checkSpinnerField(spinnerNationality) && valid
 
         when (inputOccupation.checkedRadioButtonId) {

@@ -89,6 +89,12 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        btnDatePicker.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                openDatePicker()
+            }
+        }
+
         btnDatePicker.setOnClickListener {
             openDatePicker()
         }
@@ -136,6 +142,9 @@ class MainActivity : AppCompatActivity() {
         datePicker.addOnPositiveButtonClickListener {
             utcCalendar.timeInMillis = it
             formState.inputBirthDate.setText(dateFormatter.format(utcCalendar.time))
+
+            formState.spinnerNationality.requestFocusFromTouch()
+            formState.spinnerNationality.performClick()
         }
     }
 

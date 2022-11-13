@@ -67,6 +67,9 @@
         android:hint="@string/main_base_name_title"
         android:inputType="textPersonName"
         android:labelFor="@+id/main_base_name_edit"
+        android:focusableInTouchMode="true"
+        android:nextFocusDown="@+id/main_base_firstname_edit"
+        android:imeOptions="actionNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/main_base_title"
@@ -89,6 +92,9 @@
         android:hint="@string/main_base_firstname_title"
         android:inputType="textPersonName"
         android:labelFor="@+id/main_base_firstname_edit"
+        android:focusableInTouchMode="true"
+        android:nextFocusDown="@+id/date_picker_actions"
+        android:imeOptions="actionNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/main_base_name_edit"
@@ -125,6 +131,9 @@
         android:layout_height="wrap_content"
         android:contentDescription="@string/main_base_birthdate_image"
         android:src="@drawable/cake"
+        android:focusableInTouchMode="true"
+        android:nextFocusDown="@+id/main_base_nationality_spinner"
+        android:imeOptions="actionNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_base_firstname_edit" />
 
@@ -143,6 +152,9 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:entries="@array/nationalities"
+        android:focusableInTouchMode="true"
+        android:nextFocusDown="@+id/main_base_occupation_radio_group"
+        android:imeOptions="actionNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/main_base_birthdate_edit" />
@@ -161,6 +173,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:focusableInTouchMode="true"
+        android:nextFocusDown="@+id/main_base_address_edit"
+        android:imeOptions="actionNext"
         app:layout_constraintTop_toBottomOf="@+id/main_base_occupation_title">
 
         <RadioButton
