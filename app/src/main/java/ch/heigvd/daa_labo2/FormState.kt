@@ -8,6 +8,13 @@ import android.widget.RadioGroup
 import android.widget.Spinner
 import java.util.*
 
+/**
+ * Controller for person form
+ *
+ * @author Nicolas Crausaz
+ * @author Lazar Pavicevic
+ * @author Maxime Scharwath
+ */
 data class FormState(
     val inputName: EditText,
     val inputFirstName: EditText,

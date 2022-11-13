@@ -4,6 +4,7 @@ import android.icu.text.DateFormat
 import android.icu.util.Calendar
 import android.icu.util.TimeZone
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
@@ -14,6 +15,13 @@ import com.google.android.material.datepicker.CalendarConstraints
 import com.google.android.material.datepicker.DateValidatorPointBackward
 import com.google.android.material.datepicker.MaterialDatePicker
 
+/**
+ * Application form
+ *
+ * @author Nicolas Crausaz
+ * @author Lazar Pavicevic
+ * @author Maxime Scharwath
+ */
 class MainActivity : AppCompatActivity() {
     private lateinit var btnDatePicker: ImageButton
 
@@ -25,6 +33,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var confirmBtn: Button
 
     private lateinit var formState: FormState
+
+    companion object {
+        private val TAG = MainActivity::class.java.simpleName
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -112,9 +124,11 @@ class MainActivity : AppCompatActivity() {
 
     private fun openDatePicker() {
         val utcCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"))
-        val dateFormatter = DateFormat.getDateInstance(DateFormat.LONG, resources.configuration.locales.get(0)).apply {
-            timeZone = TimeZone.getTimeZone("UTC")
-        }
+        val dateFormatter =
+            DateFormat.getDateInstance(DateFormat.LONG, resources.configuration.locales.get(0))
+                .apply {
+                    timeZone = TimeZone.getTimeZone("UTC")
+                }
         var currentTimestamp = MaterialDatePicker.todayInUtcMilliseconds()
 
         try {
@@ -152,7 +166,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun save() {
         try {
-            Toast.makeText(this, formState.export().toString(), Toast.LENGTH_LONG).show()
+            val result = formState.export().toString()
+            Toast.makeText(this, result, Toast.LENGTH_LONG).show()
+            Log.d(TAG, result)
         } catch (e: Exception) {
             Toast.makeText(this, e.message, Toast.LENGTH_LONG).show()
         }

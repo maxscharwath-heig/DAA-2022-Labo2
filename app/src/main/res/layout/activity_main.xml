@@ -342,6 +342,7 @@
         tools:ignore="LabelFor" />
     <!-- End Worker specific -->
 
+    <!-- Barrier for placing complementary data -->
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/dynamic_barrier"
         android:layout_width="wrap_content"

@@ -3,6 +3,13 @@ package ch.heigvd.daa_labo2
 import android.content.Context
 import android.widget.ArrayAdapter
 
+/**
+ * Adapter for default value in spinner
+ *
+ * @author Nicolas Crausaz
+ * @author Lazar Pavicevic
+ * @author Maxime Scharwath
+ */
 class DefaultValueAdapter<T>(
     context: Context,
     resource: Int,
