@@ -13,7 +13,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="end"
-        app:barrierMargin="20dp"
+        app:barrierMargin="@dimen/barrierMargin"
         app:constraint_referenced_ids="
         main_base_name_title,
         main_base_firstname_title,
@@ -61,7 +61,7 @@
 
     <EditText
         android:id="@+id/main_base_name_edit"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/empty"
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:hint="@string/main_base_name_title"
@@ -85,7 +85,7 @@
 
     <EditText
         android:id="@+id/main_base_firstname_edit"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/empty"
         android:layout_height="wrap_content"
         android:autofillHints="@string/main_base_firstname_title"
         android:hint="@string/main_base_firstname_title"
@@ -109,7 +109,7 @@
 
     <EditText
         android:id="@+id/main_base_birthdate_edit"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/empty"
         android:layout_height="wrap_content"
         android:autofillHints="@string/main_base_birthdate_title"
         android:clickable="false"
@@ -144,7 +144,7 @@
 
     <Spinner
         android:id="@+id/main_base_nationality_spinner"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/empty"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:entries="@array/nationalities"
@@ -156,7 +156,7 @@
         android:id="@+id/main_base_occupation_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+        android:paddingTop="@dimen/spacing"
         android:text="@string/main_base_occupation_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_base_nationality_title" />
@@ -216,7 +216,7 @@
 
     <EditText
         android:id="@+id/student_school_edit"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/empty"
         android:layout_height="wrap_content"
         android:autofillHints="@string/main_base_name_title"
         android:imeOptions="actionNext"
@@ -239,7 +239,7 @@
 
     <EditText
         android:id="@+id/student_grad_year_edit"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/empty"
         android:layout_height="wrap_content"
         android:autofillHints="@string/main_base_name_title"
         android:imeOptions="actionNext"
@@ -287,7 +287,7 @@
 
     <EditText
         android:id="@+id/worker_enterprise_edit"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/empty"
         android:layout_height="wrap_content"
         android:autofillHints="@string/main_base_name_title"
         android:imeOptions="actionNext"
@@ -310,7 +310,7 @@
 
     <Spinner
         android:id="@+id/worker_sector_spinner"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/empty"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:entries="@array/sectors"
@@ -329,7 +329,7 @@
 
     <EditText
         android:id="@+id/worker_experience_edit"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/empty"
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:imeOptions="actionNext"
@@ -385,7 +385,7 @@
 
     <EditText
         android:id="@+id/additional_email_edit"
-        android:layout_width="0dp"
+        android:layout_width="@dimen/empty"
         android:layout_height="wrap_content"
         android:autofillHints="emailAddress"
         android:imeOptions="actionNext"

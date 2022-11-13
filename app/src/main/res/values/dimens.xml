@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="empty">0dp</dimen>
     <dimen name="container_margin">6dp</dimen>
     <dimen name="spacing">16dp</dimen>
+    <dimen name="barrierMargin">20dp</dimen>
 </resources>
