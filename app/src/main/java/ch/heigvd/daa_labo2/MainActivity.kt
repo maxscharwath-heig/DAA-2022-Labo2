@@ -142,9 +142,7 @@ class MainActivity : AppCompatActivity() {
         datePicker.addOnPositiveButtonClickListener {
             utcCalendar.timeInMillis = it
             formState.inputBirthDate.setText(dateFormatter.format(utcCalendar.time))
-
-            formState.spinnerNationality.requestFocusFromTouch()
-            formState.spinnerNationality.performClick()
+            btnDatePicker.clearFocus()
         }
     }
 

@@ -65,11 +65,10 @@
         android:layout_height="wrap_content"
         android:autofillHints=""
         android:hint="@string/main_base_name_title"
+        android:imeOptions="actionNext"
         android:inputType="textPersonName"
         android:labelFor="@+id/main_base_name_edit"
-        android:focusableInTouchMode="true"
         android:nextFocusDown="@+id/main_base_firstname_edit"
-        android:imeOptions="actionNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/main_base_title"
@@ -90,11 +89,10 @@
         android:layout_height="wrap_content"
         android:autofillHints="@string/main_base_firstname_title"
         android:hint="@string/main_base_firstname_title"
+        android:imeOptions="actionNext"
         android:inputType="textPersonName"
         android:labelFor="@+id/main_base_firstname_edit"
-        android:focusableInTouchMode="true"
         android:nextFocusDown="@+id/date_picker_actions"
-        android:imeOptions="actionNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/main_base_name_edit"
@@ -130,10 +128,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/main_base_birthdate_image"
-        android:src="@drawable/cake"
         android:focusableInTouchMode="true"
-        android:nextFocusDown="@+id/main_base_nationality_spinner"
-        android:imeOptions="actionNext"
+        android:src="@drawable/cake"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/main_base_firstname_edit" />
 
@@ -152,9 +148,6 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:entries="@array/nationalities"
-        android:focusableInTouchMode="true"
-        android:nextFocusDown="@+id/main_base_occupation_radio_group"
-        android:imeOptions="actionNext"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/main_base_birthdate_edit" />
@@ -173,9 +166,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:focusableInTouchMode="true"
-        android:nextFocusDown="@+id/main_base_address_edit"
-        android:imeOptions="actionNext"
         app:layout_constraintTop_toBottomOf="@+id/main_base_occupation_title">
 
         <RadioButton
@@ -201,7 +191,7 @@
         app:constraint_referenced_ids="specific_data_title_student,
         student_school_title,
         student_school_edit,
-        student_drag_year_title,
+        student_grad_year_title,
         student_grad_year_edit" />
 
     <TextView
@@ -229,15 +219,17 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="@string/main_base_name_title"
+        android:imeOptions="actionNext"
         android:inputType="textPersonName"
-        android:labelFor="@+id/main_base_name_edit"
+        android:labelFor="@+id/student_school_title"
+        android:nextFocusDown="@id/student_grad_year_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/specific_data_title_student"
         tools:ignore="LabelFor" />
 
     <TextView
-        android:id="@+id/student_drag_year_title"
+        android:id="@+id/student_grad_year_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/main_specific_graduationyear_title"
@@ -250,8 +242,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="@string/main_base_name_title"
+        android:imeOptions="actionNext"
         android:inputType="textPersonName"
-        android:labelFor="@+id/main_base_name_edit"
+        android:labelFor="@+id/student_grad_year_title"
+        android:nextFocusDown="@id/additional_email_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/student_school_edit"
@@ -296,8 +290,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="@string/main_base_name_title"
+        android:imeOptions="actionNext"
         android:inputType="textPersonName"
-        android:labelFor="@+id/main_base_name_edit"
+        android:labelFor="@+id/worker_enterprise_title"
+        android:nextFocusDown="@+id/worker_experience_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/specific_data_title_worker"
@@ -336,8 +332,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints=""
+        android:imeOptions="actionNext"
         android:inputType="number"
-        android:labelFor="@+id/main_base_name_edit"
+        android:labelFor="@+id/worker_experience_title"
+        android:nextFocusDown="@+id/additional_email_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@+id/worker_sector_spinner"
@@ -352,7 +350,7 @@
         app:barrierMargin="@dimen/spacing"
         app:constraint_referenced_ids="
         worker_experience_title,
-        student_drag_year_title" />
+        student_grad_year_title" />
 
     <!-- Complementary data -->
     <androidx.constraintlayout.widget.Group
@@ -389,8 +387,10 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:autofillHints="emailAddress"
+        android:imeOptions="actionNext"
         android:inputType="textEmailAddress"
         android:labelFor="@+id/additional_email_title"
+        android:nextFocusDown="@id/additional_remarks_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/main_base_barrier"
         app:layout_constraintTop_toBottomOf="@id/additional_data_title"
@@ -413,6 +413,7 @@
         android:autofillHints="@string/additional_remarks_title"
         android:inputType="textMultiLine"
         android:labelFor="@+id/additional_remarks_title"
+        android:imeOptions="actionDone"
         app:layout_constraintStart_toEndOf="@+id/additional_remarks_title"
         app:layout_constraintTop_toBottomOf="@id/additional_email_edit"
         tools:ignore="LabelFor" />
