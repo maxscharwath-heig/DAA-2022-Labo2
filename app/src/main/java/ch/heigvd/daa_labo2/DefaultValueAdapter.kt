@@ -1,6 +1,8 @@
 package ch.heigvd.daa_labo2
 
 import android.content.Context
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ArrayAdapter
 
 /**
@@ -19,6 +21,15 @@ class DefaultValueAdapter<T>(
     init {
         add(defaultValue)
         addAll(*objects)
+    }
+
+    override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
+        if(position == 0) {
+            val v = View(context)
+            v.visibility = View.GONE
+            return v
+        }
+        return super.getDropDownView(position, null, parent)
     }
 
     override fun isEnabled(position: Int): Boolean {
